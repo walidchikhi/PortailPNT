@@ -28,8 +28,8 @@ function Header() {
 
         {/* Texte centré */}
         <div className="text-center flex-1 px-4">
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-            Hub de la PNT
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Portail de la Prévision Numérique du Temps (PNT)
           </h1>
           <p className="mt-1 text-sm sm:text-base text-gray-200">
           </p>

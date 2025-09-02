@@ -4,7 +4,7 @@ export const apps = [
     name: 'Documentation',
     description: "Accéder à la documentation interne et aux guides techniques.",
     icon: 'Book',
-    url: 'http://localhost:8000/Home', // <-- Remplace par l’URL réelle
+    url: 'http://localhost:8000/Home',
     external: true
   },
   {
@@ -18,7 +18,7 @@ export const apps = [
     name: 'Visualisation',
     description: 'Explorer et visualiser les sorties de modéles PNT.',
     icon: 'BarChart2',
-    url: 'http://10.16.50.11:2026/',
+    url: 'http://10.16.50.11:2025/',
     external: true
   },
   {
