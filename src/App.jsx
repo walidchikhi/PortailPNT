@@ -25,18 +25,24 @@ export default function App() {
   const [favorites, setFavorites] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Load favorites when user changes
+  // Load favorites from API
   useEffect(() => {
     if (user) {
-      const savedFavs = localStorage.getItem(`pnt-favorites-${user.username}`);
-      setFavorites(savedFavs ? JSON.parse(savedFavs) : []);
+      fetch(`/api/favorites/${user.username}`)
+        .then(res => res.json())
+        .then(data => setFavorites(data))
+        .catch(err => console.error("Error fetching favorites:", err));
     }
   }, [user]);
 
-  // Save favorites when they change
+  // Save favorites to API
   useEffect(() => {
     if (user) {
-      localStorage.setItem(`pnt-favorites-${user.username}`, JSON.stringify(favorites));
+      fetch(`/api/favorites/${user.username}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ favorites })
+      }).catch(err => console.error("Error saving favorites:", err));
     }
   }, [favorites, user]);
 

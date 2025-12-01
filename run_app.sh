@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Kill any process using port 39313
+# Kill any process using port 4173
 PID=$(lsof -ti:4173)
 if [ -n "$PID" ]; then
     echo "Killing process on port 4173 (PID: $PID)"
@@ -9,5 +9,5 @@ fi
 
 # Run the app
 npm run build
-npm run dev -- --host 0.0.0.0 --port 4173
+node server.js
 
