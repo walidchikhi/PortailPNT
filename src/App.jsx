@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {
   Book, CheckCircle, BarChart2, Factory, Satellite, Monitor,
   Flame, Plane, Thermometer, Server, AlertTriangle, MessageSquare,
-  Globe, Languages, Radio, LayoutDashboard, Heart, Search, Menu, X
+  Globe, Languages, Radio, LayoutDashboard, Heart, Search, LogOut, User
 } from "lucide-react";
 import { apps } from "./apps";
 import logoLeft from "./assets/logo.png";
 import logoRight from "./assets/logo.png";
+import Login from './Login';
 
 const IconMap = {
   Book, CheckCircle, BarChart2, Factory, Satellite, Monitor,
@@ -15,16 +16,48 @@ const IconMap = {
 };
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('all');
-  const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem('pnt-favorites');
-    return saved ? JSON.parse(saved) : [];
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('pnt-user');
+    return saved ? JSON.parse(saved) : null;
   });
+
+  const [activeTab, setActiveTab] = useState('all');
+  const [favorites, setFavorites] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Load favorites when user changes
   useEffect(() => {
-    localStorage.setItem('pnt-favorites', JSON.stringify(favorites));
-  }, [favorites]);
+    if (user) {
+      const savedFavs = localStorage.getItem(`pnt-favorites-${user.username}`);
+      setFavorites(savedFavs ? JSON.parse(savedFavs) : []);
+    }
+  }, [user]);
+
+  // Save favorites when they change
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(`pnt-favorites-${user.username}`, JSON.stringify(favorites));
+    }
+  }, [favorites, user]);
+
+  // Persist user session
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('pnt-user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('pnt-user');
+    }
+  }, [user]);
+
+  const handleLogin = (userData) => {
+    setUser(userData);
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    setFavorites([]);
+    setActiveTab('all');
+  };
 
   const toggleFavorite = (appId) => {
     setFavorites(prev =>
@@ -33,6 +66,10 @@ export default function App() {
         : [...prev, appId]
     );
   };
+
+  if (!user) {
+    return <Login onLogin={handleLogin} />;
+  }
 
   const filteredApps = apps.filter(app => {
     const matchesSearch = app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -45,7 +82,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-100 selection:text-blue-900">
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-100 via-slate-50 to-white opacity-70"></div>
 
-      <Header />
+      <Header user={user} onLogout={handleLogout} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
@@ -92,7 +129,7 @@ export default function App() {
   );
 }
 
-function Header() {
+function Header({ user, onLogout }) {
   return (
     <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,14 +152,30 @@ function Header() {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full border border-blue-100">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-xs font-medium text-blue-700">Systèmes Opérationnels</span>
+            <div className="hidden md:flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-full border border-slate-100">
+              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700">
+                <User className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-sm font-semibold text-slate-700">{user.name}</span>
+                <span className="text-[10px] text-slate-500 uppercase tracking-wider">Connecté</span>
+              </div>
             </div>
+
+            <button
+              onClick={onLogout}
+              className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-full transition-all duration-200"
+              title="Se déconnecter"
+            >
+              <LogOut className="w-5 h-5" />
+            </button>
+
+            <div className="hidden sm:block w-px h-8 bg-slate-200 mx-2"></div>
+
             <img
               src={logoRight}
               alt="Logo Météo"
-              className="h-10 w-auto object-contain opacity-90"
+              className="h-10 w-auto object-contain opacity-90 hidden sm:block"
             />
           </div>
         </div>
