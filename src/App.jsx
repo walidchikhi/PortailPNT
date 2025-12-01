@@ -1,9 +1,9 @@
-import { Book, CheckCircle, BarChart2, Factory, Monitor } from "lucide-react"
+import { Book, CheckCircle, BarChart2, Factory, Satellite, Monitor } from "lucide-react";
 import { apps } from "./apps"
 import logoLeft from "./assets/logo.png"
 import logoRight from "./assets/logo.png"
 
-const IconMap = { Book, CheckCircle, BarChart2, Factory, Monitor }
+const IconMap = { Book, CheckCircle, BarChart2, Factory,Satellite, Monitor }
 
 export default function App() {
   return (

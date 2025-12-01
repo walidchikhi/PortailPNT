@@ -18,22 +18,22 @@ export const apps = [
     name: 'Visualisation',
     description: 'Explorer et visualiser les sorties de modéles PNT.',
     icon: 'BarChart2',
-    url: 'http://10.16.50.166:8889',
+    url: 'http://10.16.50.11:2025/',
     external: true
   },
   {
     name: 'Production',
     description: 'Gérer et suivre la chaîne de production de la PNT.',
     icon: 'Factory',
-    url: 'http://10.16.40.243:5000',
-    external: true
+    url: '/prod/prod.html',
+    external: false
   },
   {
     name: 'MTG',
     description: 'Visualisation des produits MTG.',
     icon: 'Satellite',
     url: 'http://10.16.50.22:5000/interfaceMap0',
-    external: true
+    external: false
   },
 
   {
