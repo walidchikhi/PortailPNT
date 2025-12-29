@@ -9,9 +9,9 @@ export const apps = [
     external: true
   },
   {
-    id: 'controbs',
-    name: 'ContrObs',
-    description: 'Contrôle des modéles PNT opérationnels par rapports aux observations.',
+    id: 'Contrôle',
+    name: 'Contrôle',
+    description: 'Contrôle des Produits de la DEM (Modéles et TAF).',
     icon: 'CheckCircle',
     url: 'http://10.16.40.88:3838/controle/',
     external: true
@@ -30,14 +30,6 @@ export const apps = [
     description: 'Gérer et suivre la chaîne de production de la PNT.',
     icon: 'Factory',
     url: 'http://10.16.40.243:5000',
-    external: true
-  },
-  {
-    id: 'mtg',
-    name: 'MTG',
-    description: 'Visualisation des produits MTG.',
-    icon: 'Satellite',
-    url: 'http://10.16.50.22:5000/interfaceMap0',
     external: true
   },
   {

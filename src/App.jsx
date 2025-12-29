@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Book, CheckCircle, BarChart2, Factory, Satellite, Monitor,
   Flame, Plane, Thermometer, Server, AlertTriangle, MessageSquare,
-  Globe, Languages, Radio, LayoutDashboard, Heart, Search, LogOut, User
+  Globe, Languages, Radio, LayoutDashboard, Star, Search, LogOut, User
 } from "lucide-react";
 import { apps } from "./apps";
 import logoLeft from "./assets/logo.png";
@@ -210,11 +210,11 @@ function TabNavigation({ activeTab, setActiveTab }) {
         className={`
           flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-200
           ${activeTab === 'favorites'
-            ? 'bg-white text-red-600 shadow-sm ring-1 ring-black/5'
+            ? 'bg-white text-yellow-600 shadow-sm ring-1 ring-black/5'
             : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'}
         `}
       >
-        <Heart className={`w-4 h-4 ${activeTab === 'favorites' ? 'fill-current' : ''}`} />
+        <Star className={`w-4 h-4 ${activeTab === 'favorites' ? 'fill-current' : ''}`} />
         Favoris
       </button>
     </div>
@@ -235,12 +235,12 @@ function AppCard({ app, isFavorite, onToggleFavorite }) {
           className={`
             p-2 rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
             ${isFavorite
-              ? 'bg-red-50 text-red-500 hover:bg-red-100'
+              ? 'bg-yellow-50 text-yellow-500 hover:bg-yellow-100'
               : 'bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-slate-600'}
           `}
           title={isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
         >
-          <Heart className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+          <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
         </button>
       </div>
 
