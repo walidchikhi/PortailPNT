@@ -57,6 +57,14 @@ export const apps = [
     external: true
   },
   {
+    id: 'stationclim',
+    name: 'Station Clim',
+    description: 'Données des stations météorologiques Climatiques.',
+    icon: 'CloudSun',
+    url: 'https://10.16.80.222:8443/ims/web/pages/customer/algeria_706/envidb/currentData/currentData',
+    external: true
+  },
+  {
     id: 'tsm',
     name: 'TSM Vaisala',
     description: 'Gestion des alertes orageuses et foudre.',

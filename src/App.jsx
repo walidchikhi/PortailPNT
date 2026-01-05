@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   Book, CheckCircle, BarChart2, Factory, Satellite, Monitor,
   Flame, Plane, Thermometer, Server, AlertTriangle, MessageSquare,
-  Globe, Languages, Radio, LayoutDashboard, Star, Search, LogOut, User
+  Globe, Languages, Radio, LayoutDashboard, Star, Search, LogOut, User, CloudSun
 } from "lucide-react";
 import { apps } from "./apps";
 import logoLeft from "./assets/logo.png";
@@ -12,7 +12,7 @@ import Login from './Login';
 const IconMap = {
   Book, CheckCircle, BarChart2, Factory, Satellite, Monitor,
   Flame, Plane, Thermometer, Server, AlertTriangle, MessageSquare,
-  Globe, Languages, Radio, LayoutDashboard
+  Globe, Languages, Radio, LayoutDashboard, CloudSun
 };
 
 export default function App() {
