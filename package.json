@@ -1,6 +1,15 @@
 {
   "name": "pnt-hub",
   "private": true,
+  "description": "Centralized Meteorological Operations Portal for the Direction de l'Exploitation Météorologique (DEM) of Algeria.",
+  "keywords": [
+    "meteorology",
+    "dashboard",
+    "react",
+    "pnt",
+    "weather-forecasting",
+    "portal"
+  ],
   "version": "1.0.0",
   "type": "module",
   "scripts": {

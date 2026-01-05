@@ -16,17 +16,10 @@ export default function Login({ onLogin }) {
         // Simulate network delay for a smoother feel
         setTimeout(() => {
             if (
-                (username === 'admin' && password === 'admin') ||
-                (username === 'dem' && password === 'dem') ||
-                (username === 'aeronautique' && password === 'aeronautique') ||
-                (username === 'assistance' && password === 'assistance')
+                (username === 'admin' && password === 'admin')
             ) {
                 let name = 'Utilisateur';
                 if (username === 'admin') name = 'Administrateur';
-                if (username === 'dem') name = 'Utilisateur DEM';
-                if (username === 'aeronautique') name = 'Aéronautique';
-                if (username === 'assistance') name = 'Assistance';
-
                 onLogin({ username, name });
             } else {
                 setError('Nom d\'utilisateur ou mot de passe incorrect');
